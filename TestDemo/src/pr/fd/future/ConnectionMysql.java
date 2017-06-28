@@ -135,8 +135,29 @@ public class ConnectionMysql {
 		return rs;
 	}
 
+	/**
+	 * 递归案例: 第一天给你1元，第二天给你两元，第三给你4元，以后的每一天都给你前一天的2倍，问第30天到底给了多少钱？
+	 * 
+	 * @param money
+	 *            初始值
+	 * @param count
+	 *            要给的次数
+	 * @return 返回最终的结果
+	 */
+	public static long count(long money, int count) {
+		count++;
+		if (count > 30) {
+			return money;
+		} else {
+			return Long.valueOf(count(money * 2, count));
+		}
+	}
+
 	public static void main(String[] args) {
-		System.out.println(new ConnectionMysql().getConnection());
+		// System.out.println(new ConnectionMysql().getConnection());
+		long l = count(1, 0);
+		System.out.println(l);
+
 	}
 
 }
