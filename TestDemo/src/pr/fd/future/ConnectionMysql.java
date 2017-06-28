@@ -17,13 +17,7 @@ public class ConnectionMysql {
 	public Connection conn;
 	public PreparedStatement pstmt;
 	public ResultSet rs;
-	static {
-		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
+	 
 
 	/**
 	 * 与数据库获取连接
@@ -32,10 +26,15 @@ public class ConnectionMysql {
 	 */
 	public Connection getConnection() {
 		try {
+			
+			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(
-					"jdbc:sqlserver://localhost:1433;DatabaseName=epet", "sa",
-					"");
+					"jdbc:mysql://localhost:3306/alk", "root",
+					"root");
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -134,28 +133,25 @@ public class ConnectionMysql {
 		}
 		return rs;
 	}
-
-	/**
-	 * 递归案例: 第一天给你1元，第二天给你两元，第三给你4元，以后的每一天都给你前一天的2倍，问第30天到底给了多少钱？
-	 * 
-	 * @param money
-	 *            初始值
-	 * @param count
-	 *            要给的次数
-	 * @return 返回最终的结果
-	 */
-	public static long count(long money, int count) {
+/**
+ *  递归案例:
+ *   第一天给你1元，第二天给你两元，第三给你4元，以后的每一天都给你前一天的2倍，问第30天到底给了多少钱？
+ * @param money 初始值
+ * @param count 要给的次数
+ * @return  返回最终的结果
+ */
+	public static long count(long money,int count) {
 		count++;
-		if (count > 30) {
+		if(count>30){
 			return money;
-		} else {
-			return Long.valueOf(count(money * 2, count));
+		}else{
+			return  Long.valueOf(  count(money * 2,count));
 		}
 	}
 
 	public static void main(String[] args) {
 		// System.out.println(new ConnectionMysql().getConnection());
-		long l = count(1, 0);
+		long l = count(1,0);
 		System.out.println(l);
 
 	}
