@@ -104,5 +104,7 @@ public class QuickSort {
 		array[leftIndex] = standard;
 		return leftIndex;
 	}
+	
+	
 
 }

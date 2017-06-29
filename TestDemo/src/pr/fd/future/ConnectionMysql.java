@@ -150,7 +150,7 @@ public class ConnectionMysql {
 	}
 
 	public static void main(String[] args) {
-		// System.out.println(new ConnectionMysql().getConnection());
+		  System.out.println(new ConnectionMysql().getConnection());
 		long l = count(1,0);
 		System.out.println(l);
 
